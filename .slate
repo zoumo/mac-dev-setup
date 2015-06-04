@@ -1,0 +1,88 @@
+# Configs
+config defaultToCurrentScreen true
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+config secondsBetweenRepeat 0.1
+config checkDefaultsOnLoad true
+config focusCheckWidthMax 3000
+config keyboardLayout qwerty
+config windowHintsShowIcons true
+config windowHintsIgnoreHiddenWindows false
+config windowHintsSpread true
+
+# Monitor Aliases
+alias mon-laptop      0
+
+# Misc Aliases
+alias showHintsLeftHand hint ASDFQWERT
+alias showNormalHint hint QWERTASDFGZXCVYUIOPHJKLBNM
+
+# Abstract positions
+alias full move screenOriginX;screenOriginY screenSizeX;screenSizeY
+alias lefthalf move screenOriginX;screenOriginY screenSizeX/2;screenSizeY
+alias righthalf move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY
+alias bottomhalf push bottom bar-resize:screenSizeY/2
+alias tophalf push top bar-resize:screenSizeY/2
+
+alias topleft corner top-left resize:screenSizeX/2;screenSizeY/2
+alias topright corner top-right resize:screenSizeX/2;screenSizeY/2
+alias bottomleft corner bottom-left resize:screenSizeX/2;screenSizeY/2
+alias bottomright corner bottom-right resize:screenSizeX/2;screenSizeY/2
+
+alias rightmost move screenOriginX+screenSizeX*0.4;screenOriginY screenSizeX*0.6;screenSizeY
+alias rightless move screenOriginX+screenSizeX*0.6;screenOriginY screenSizeX*0.4;screenSizeY
+alias leftmost move screenOriginX;screenOriginY screenSizeX*0.6;screenSizeY
+alias leftless move screenOriginX;screenOriginY screenSizeX*0.4;screenSizeY
+
+
+# ======================================
+# The HYPER key
+# ======================================
+
+alias hyper ctrl;alt;cmd
+
+bind c:${hyper} ${showHintsLeftHand}
+bind f:${hyper} ${full}
+
+# Location bindings(VIM Style)
+bind h:${hyper} ${lefthalf}
+bind j:${hyper} ${bottomhalf}
+bind k:${hyper} ${tophalf}
+bind l:${hyper} ${righthalf}
+
+bind n:${hyper} ${bottomleft}
+bind .:${hyper} ${bottomright}
+bind y:${hyper} ${topleft}
+bind o:${hyper} ${topright}
+
+bind u:${hyper} undo
+
+# Resize Bindings
+bind pad6:${hyper} resize +10% +0
+bind pad4:${hyper} resize -10% +0
+bind pad8:${hyper} resize +0   -10%
+bind pad2:${hyper} resize +0   +10%
+
+# Nudge Binding(Move Window WASD Style)
+bind d:${hyper} nudge +10% +0
+bind a:${hyper} nudge -10% +0
+bind w:${hyper} nudge +0 -10%
+bind s:${hyper} nudge +0 +10%
+
+# Focus Bindings
+bind right:${hyper}    focus right
+bind left:${hyper}     focus left
+bind up:${hyper}       focus up
+bind down:${hyper}     focus down
+
+ # Grid
+bind g:${hyper} grid padding:5 ${mon-laptop}:2,2
+
+# App bindings
+#bind e:${hyper} focus ${browser}
+#bind u:${hyper} focus ${editor}
+#bind x:${hyper} focus 'Xcode'
+#bind g:${hyper} focus 'GitHub'
+#bind m:${hyper} focus 'Mail'
+#bind i:${hyper} focus 'iTerm'
+#bind o:${hyper} focus 'Path Finder'
