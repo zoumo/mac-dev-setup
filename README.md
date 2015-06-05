@@ -30,6 +30,12 @@ __Finder > Preferences... > 高级__ 下点选 __显示所有扩展名__
 
 __OS X 10.10__已经自带
 
+### git-flow
+
+Git Flow是构建在Git之上的一个组织软件开发活动的模型，是在Git之上构建的一项软件开发最佳实践。Git Flow是一套使用Git进行源代码管理时的一套行为规范和简化部分Git操作的工具。
+
+
+
 ---
 
 ### zsh
@@ -112,21 +118,6 @@ Homebrew 安装依赖 __Command Line Tools__ for __Xcode__, 可以去Apple官网
 
 ## Application
 
-### Google Chrome
-
-替换成自己喜欢的任意浏览器.
-
-
-[推荐插件](./ChromePlugins.md).
-
----
-
-### The Unarchiver
-
-免费的mac系统解压缩软件
-
----
-
 ### iTerm2
 
 mac下强大的终端. [官网地址](http://brew.sh/)
@@ -166,9 +157,57 @@ Sublime Text在Mac OS X中一跳一跳启动不了的解决方法见：[link](ht
 - 用磁盘管理工具打开下载的dmg文件，转换成读写映像格式，存储替换一下．
 - 再把它转换成压缩映像格式，存储替换一下．
 
-### Plugins
+#### Plugins
 
 [插件推荐](./SublimePlugins.md)
+
+---
+
+### Python
+
+OS X 自带了Python 但是少了很多库, 如pip. 使用homebrew重新安装
+
+	$ brew install python
+	
+### Mysql
+
+#### install
+
+	$ brew install mysql
+	
+#### config
+
+基本上不需要过多的配置, 默认是按照下面这个配置的
+
+	sudo mysql_install_db 
+	--verbose --user=`whoami` 
+	--basedir="$(brew --prefix mysql)" 
+	--datadir=/usr/local/var/mysql 
+	--tmpdir=/tmp 
+
+#### start
+
+一次启动
+
+	/usr/local/opt/mysql/bin/mysqld_safe &
+
+开机自启动
+
+	cp /usr/local/Cellar/mysql/5.6.24/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents
+	launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+
+### Google Chrome
+
+替换成自己喜欢的任意浏览器.
+
+
+[推荐插件](./ChromePlugins.md).
+
+---
+
+### The Unarchiver
+
+免费的mac系统解压缩软件
 
 ---
 
