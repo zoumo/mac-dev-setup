@@ -10,31 +10,32 @@
 
 OSX
 
-    {
-        "caret_style": "phase",
-        "draw_centered": false,
-        "font_face": "Monaco",
-        "font_size": 14,
-        "gutter": true,
-        "highlight_line": true,
-        "ignored_packages":
-        [
-            "Vintage",
-            "SublimeClang",
-            "SFTP",
-            "Markdown"
-        ],
-        "line_numbers": true,
-        "line_padding_bottom": 1,
-        "line_padding_top": 1,
-        "save_on_focus_lost": true,
-        "tab_size": 4,
-        "theme": "Spacegray Eighties.sublime-theme",
-        "color_scheme": "Packages/Theme - Spacegray/base16-eighties.dark.tmTheme",
-        "translate_tabs_to_spaces": true,
-        "update_check": false,
-        "word_wrap": true
-    }
+	{
+		"caret_style": "phase",
+		"color_scheme": "Packages/Color Scheme - Default/Monokai Bright.tmTheme",
+		"draw_centered": false,
+		"font_face": "Monaco",
+		"font_size": 14,
+		"gutter": true,
+		"highlight_line": true,
+		"ignored_packages":
+		[
+			"SFTP",
+			"Vintage",
+			"Jedi",
+			"Markdown",
+			"SublimeClang"
+		],
+		"line_numbers": true,
+		"line_padding_bottom": 1,
+		"line_padding_top": 1,
+		"save_on_focus_lost": true,
+		"tab_size": 4,
+		"theme": "Spacegray Eighties.sublime-theme",
+		"translate_tabs_to_spaces": true,
+		"update_check": false,
+		"word_wrap": true
+	}
 
 
 
@@ -68,16 +69,29 @@ OSX
 
 
 ---
+### [SublimeCodeIntel](https://packagecontrol.io/packages/SublimeCodeIntel)
 
+代码跳转 + 代码自动补全, 有的时候不是很好使
+
+---
 ### [AutoBackups](https://packagecontrol.io/packages/AutoBackups)
 
-文件修改自动备份, ctrl+alt+b
+文件修改自动备份, `ctrl+alt+b`
+
+修改配置, 禁止打开文件时进行备份, 和备份删除时间
+
+	{
+   		"backup_on_open_file": false,
+   		"delete_old_backups": 7, // days to delete
+	}
+
 
 ---
 
 ### [BracketHighlighter](https://packagecontrol.io/packages/BracketHighlighter)
 
 括号高亮, 需要修改配置
+默认的匹配样式是下划线, 需要在配置中找到`bracket_styles`, 在下面找到对应的`style` 改成 `highlight`
 
 ---
 
