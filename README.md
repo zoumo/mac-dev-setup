@@ -1,6 +1,8 @@
 # MAC-DEV-SETUP
 
-下面是我设置OSX的过程, 包含了安装的一些软件和配置过程, 以及字体
+下面是我设置OSX的过程, 包含了安装的一些软件和配置过程, 以及字体.
+有些设置和软件带有个人色彩, 请酌情选择.
+
 我的系统为__OS X 10.10__.
 
 部分软件和设置参考[这里作者](https://github.com/nicolashery/mac-dev-setup)
@@ -12,7 +14,7 @@
 - `command + h`  = 隐藏当前窗口
 - `command + alt + h` = 只保留当前程序, 其他全部隐藏
 - `command + c` = 复制; `command + v` = 粘贴; `command + alt + c` = 剪切
-- `command + ~`= 当前活跃程序的窗口跳转
+- `command + ~` = 当前活跃程序的窗口跳转
 
 ### 显示隐藏文件
 
@@ -38,6 +40,10 @@ __键盘 > 快捷键__:
 
  - Mission Control: 关掉 __显示Dashboard__
  - Launchpad 和 Dock:  关闭 __打开或关闭Dock隐藏__; 将 __显示Launchpad快捷键__ 设置为 F12
+
+### 去除Lauchpad 重复图标
+
+	$ rm -f /Users/zhangjun/Library/Application\ Support/Dock/*.db && killall Dock
 
 
 ## Fonts
@@ -86,27 +92,60 @@ OS X 自带了Python 但是少了很多库, 如`pip`. 使用`homebrew`重新安�
 ---
 
 
-
 ### Git
 
 __OS X 10.10__已经自带
-
 
 #### git-flow
 
 Git Flow是构建在Git之上的一个组织软件开发活动的模型，是在Git之上构建的一项软件开发最佳实践。Git Flow是一套使用Git进行源代码管理时的一套行为规范和简化部分Git操作的工具。
 
-
-
 ---
 
-### zsh
+### zsh, oh-my-zsh
 
 [终极shell](http://ohmyz.sh/)
 
 不知为何由于安全性的原因, 连接会被ssl中断, 使用`-k`参数来保证连接正常(下面的安装类似)
 
-	curl -L -k https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+	$ curl -L -k https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+
+---
+
+### autojump
+
+下载 [link](https://github.com/rupa/z.git)
+
+将`z.sh`放在某个位置, 比如`/usr/local/lib/z.sh`
+
+然后在`~/.zshrc`里面添加
+
+	$ echo "source /usr/local/lib/z.sh" >> ~/.zshrc
+	$ source ~/.zshrc
+
+之后的cd命令都会被z.sh统计到, 以后用 `z regex` 直接进入频繁访问的目录
+
+---
+
+### 实用工具
+
+#### 文档格式转化
+
+	$ brew install dos2unix
+	
+	# windows(\r\n) to unix(\n)
+	$ dos2unix filename
+	
+	# unix(\n) to windows(\r\n)
+	$ unix2dos filename
+	
+	# windows(\r\n) to mac(\n)
+	$ dos2unix -c mac filename
+
+####  文档编码转化
+
+	$ iconv -f GBK -t UTF-8 filename > out
+	$ iconv -f UTF-8 -t GBK filename > out
 
 ---
 
@@ -129,7 +168,9 @@ Homebrew 安装依赖 __Command Line Tools__ for __Xcode__, 可以去Apple官网
 
 ### powerline
 
-官网的安装有问题, 直接下载源码
+先用`pip`安装
+
+	$ pip install powerline-status
 
 先安装__字体__不然会有乱码
 
@@ -187,7 +228,7 @@ mac下强大的终端. [官网地址](http://brew.sh/)
 
 2. 打开全局快捷键
 
-	__Keys > HotKey__ 勾选 __Show/hide iTerm2 with a system-wide hitkey__, 
+	__Keys > HotKey__ 勾选 __Show/hide iTerm2 with a system-wide hotkey__
 
 3. 设置`command + click`文件时打开文件的程序
 
@@ -277,7 +318,9 @@ Sublime Text在Mac OS X中一跳一跳启动不了的解决方法见：[link](ht
 
 ---
 
-### VirtualBox
+### 虚拟机
+
+#### VirtualBox
 
 免费的虚拟机
 
@@ -285,5 +328,28 @@ Sublime Text在Mac OS X中一跳一跳启动不了的解决方法见：[link](ht
 
 android虚拟机, 有免费的个人版本
 
+#### VMware Fusion
+
+这个有序列码, 性能也比较好
+
+parallels desktop没有免费的
+
 ---
 
+### Mou
+
+Markdown编辑器
+
+---
+
+### Sequel Pro
+
+开源免费的Mysql管理软件
+
+---
+
+### PyCharm
+
+python IDE
+
+---
