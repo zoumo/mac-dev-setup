@@ -59,6 +59,8 @@ __键盘 > 快捷键__:
 OS X 自带了Python 但是少了很多库, 如`pip`. 使用`homebrew`重新安装
 
 	$ brew install python
+
+更多的Python环境配置[python-setup](./python-setup.md)
 	
 ---
 
@@ -267,7 +269,7 @@ Sublime Text在Mac OS X中一跳一跳启动不了的解决方法见：[link](ht
 
 #### Plugins
 
-[插件推荐](./SublimePlugins.md)
+[插件推荐](./sublime-plugins.md)
 
 ---
 
@@ -290,7 +292,7 @@ Sublime Text在Mac OS X中一跳一跳启动不了的解决方法见：[link](ht
 替换成自己喜欢的任意浏览器.
 
 
-[推荐插件](./ChromePlugins.md).
+[推荐插件](./chrome-plugins.md).
 
 ---
 
@@ -348,8 +350,3 @@ Markdown编辑器
 
 ---
 
-### PyCharm
-
-python IDE
-
----

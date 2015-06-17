@@ -70,10 +70,10 @@ bind w:${hyper} nudge +0 -10%
 bind s:${hyper} nudge +0 +10%
 
 # Focus Bindings
-bind right:${hyper}    focus right
-bind left:${hyper}     focus left
-bind up:${hyper}       focus up
-bind down:${hyper}     focus down
+#bind right:${hyper}    focus right
+#bind left:${hyper}     focus left
+#bind up:${hyper}       focus up
+#bind down:${hyper}     focus down
 
  # Grid
 bind g:${hyper} grid padding:5 ${mon-laptop}:2,2
