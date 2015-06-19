@@ -34,6 +34,8 @@ __Finder > Preferences... > 高级__ 下点选 __显示所有扩展名__
 
 __鼠标__:  关闭 __滚动方向:自然__
 
+改用软件更改[Scroll Reverser for Mac OS X](http://pilotmoon.com/scrollreverser/)
+
 __键盘 > 键盘__: 按键重复 -> 快, 重复前延迟 -> 快
 
 __键盘 > 快捷键__:  
