@@ -83,7 +83,7 @@ source $ZSH/oh-my-zsh.sh
 . ~/plugins/powerline/powerline/bindings/zsh/powerline.zsh
 
 # autojump
-source /usr/local/lib/z.sh
+source ~/plugins/z/z.sh
 
 
 # virtualenv config
