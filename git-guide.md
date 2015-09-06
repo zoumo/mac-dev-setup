@@ -1,6 +1,6 @@
 # Git Guide
 
-
+http://www.ihref.com/read-16369.html
 
 ### 创建新的仓库
 

@@ -5,9 +5,44 @@
 
 我的系统为__OS X 10.10__.
 
-部分软件和设置参考[这里作者](https://github.com/nicolashery/mac-dev-setup)
 
-## Mac Config
+
+## First of All
+
+1. 安装 [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
+2. 安装 Xcode Command Line Tools
+
+```bash
+$ xcode-select --install
+```
+
+## Homebrew
+
+类似于yum和apt-get的mac下的包管理器. [官网地址](http://brew.sh/)
+
+#### Install
+
+Homebrew 安装依赖 **Xcode Command Line Tools** 然后使用以下命令安装:
+
+```bash
+$ ruby -e "$(curl -fsSL -k https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+基本上完事了, 顺便把`wget`安装了
+
+```bash
+$ brew install wget
+```
+
+### Homebrew Cask
+
+基于Homebrew的软件安装新方式 [官网地址](http://caskroom.io/)
+
+```bash
+$ brew install caskroom/cask/brew-cask
+```
+
+## Mac Settings
 
 ### 实用快捷键
 
@@ -16,19 +51,8 @@
 - `command + c` = 复制; `command + v` = 粘贴; `command + alt + c` = 剪切
 - `command + ~` = 当前活跃程序的窗口跳转
 
-### 显示隐藏文件
+### [更改配置, 参考dotfiles](https://github.com/zoumo/dotfiles/blob/master/README.md#os-x-defaults-setting)
 
-    defaults write ~/Library/Preferences/com.apple.finder AppleShowAllFiles -bool true 
-
-### 修改Finder的配置
-
-__Finder > Preferences... > 通用__ 下更改 __开启新Finder窗口时打开:__ 
-
-__Finder > Preferences... > 高级__ 下点选 __显示所有扩展名__
-
-### 修改Dock相关
-
-![image](http://7xjgzy.com1.z0.glb.clouddn.com/mac_config_1.png)
 
 ### 鼠标, 键盘, 快捷键修改
 
@@ -41,12 +65,13 @@ __键盘 > 键盘__: 按键重复 -> 快, 重复前延迟 -> 快
 __键盘 > 快捷键__:  
 
  - Mission Control: 关掉 __显示Dashboard__
- - Launchpad 和 Dock:  关闭 __打开或关闭Dock隐藏__; 将 __显示Launchpad快捷键__ 设置为 F12
+ - Launchpad 和 Dock: 将 __显示Launchpad快捷键__ 设置为 F12
 
 ### 去除Lauchpad 重复图标
 
-	$ rm -f /Users/zhangjun/Library/Application\ Support/Dock/*.db && killall Dock
-
+```bash
+$ rm -f /Users/zhangjun/Library/Application\ Support/Dock/*.db && killall Dock
+```
 
 ## Fonts
 
@@ -76,23 +101,27 @@ OS X 自带了Python 但是少了很多库, 如`pip`. 使用`homebrew`重新安�
 
 基本上不需要过多的配置, 默认是按照下面这个配置的
 
-	sudo mysql_install_db 
+```
+sudo mysql_install_db 
 	--verbose --user=`whoami` 
 	--basedir="$(brew --prefix mysql)" 
 	--datadir=/usr/local/var/mysql 
 	--tmpdir=/tmp 
+```
 
 #### start
 
 一次启动
 
-	/usr/local/opt/mysql/bin/mysqld_safe &
-
+```bash
+$ /usr/local/opt/mysql/bin/mysqld_safe &
+```
 开机自启动
 
-	cp /usr/local/Cellar/mysql/5.6.24/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents
-	launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-
+```bash
+$ cp /usr/local/Cellar/mysql/5.6.24/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents
+$ launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+```
 ---
 
 
@@ -112,22 +141,34 @@ Git Flow是构建在Git之上的一个组织软件开发活动的模型，是在
 
 不知为何由于安全性的原因, 连接会被ssl中断, 使用`-k`参数来保证连接正常(下面的安装类似)
 
-	$ curl -L -k https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+```bash
+$ curl -L -k https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+```
 
 ---
 
 ### autojump
 
-下载 [link](https://github.com/rupa/z.git)
+install
 
-将`z.sh`放在某个位置, 比如`/usr/local/lib/z.sh`
+```bash
+$ git clone https://github.com/rupa/z.git ./plugins
+```
+
+or
+
+```
+$ brew install z
+```
 
 然后在`~/.zshrc`里面添加
 
-	$ echo "source /usr/local/lib/z.sh" >> ~/.zshrc
-	$ source ~/.zshrc
+```
+$ echo "source /usr/local/lib/z.sh" >> ~/.zshrc
+$ source ~/plugins/z/z.sh
+```
 
-之后的cd命令都会被z.sh统计到, 以后用 `z regex` 直接进入频繁访问的目录
+之后的cd命令都会被z.sh统计到, 以后用 `z <regex>` 直接进入频繁访问的目录
 
 ---
 
@@ -151,47 +192,78 @@ Git Flow是构建在Git之上的一个组织软件开发活动的模型，是在
 	$ iconv -f GBK -t UTF-8 filename > out
 	$ iconv -f UTF-8 -t GBK filename > out
 
----
 
-### Homebrew
+##终端美化
 
-类似于yum和apt-get的mac下的包管理器. [官网地址](http://www.iterm2.com/)
+美化至少要对三个工具进行配色Terminal, vim, ls
+我使用solarized来进行终端美化, 它提供了一套比较完整的解决方案, 但是作者没有给ls配色, 所以使用另外一个作者 
+[seebi](https://github.com/seebi/) 的 [dircolors-solarized](https://github.com/seebi/dircolors-solarized.git)
 
-#### Install
+```bash
+$ git clone https://github.com/altercation/solarized.git ~/plugins
+$ git clone https://github.com/seebi/dircolors-solarized.git ~/plugins
+```
 
-Homebrew 安装依赖 __Command Line Tools__ for __Xcode__, 可以去Apple官网下载__Xcode__.
-然后使用以下两个命令来安装`Homebrew`
+### Terminal/Iterm2
 
-``$ ruby -e "$(curl -fsSL -k https://raw.githubusercontent.com/Homebrew/install/master/install)"``
+在 `~/plugins/solarized/iterm2-colors-solarized/` 双击 `Solarized Dark.itermcolors` 导入iterm2的配色
+ 
+在 `~/plugins/solarized/osx-terminal.app-colors-solarized/xterm-256color/` 双击 `Solarized Dark ansi.terminal` 导入Terminal.app的配色
 
-基本上完事了, 顺便把`wget`安装了
+### vim
 
-``$ brew install wget``
+```bash
+$ mkdir -p ~/.vim/colors
+$ cd ~/plugins/solarized/vim-colors-solarized/colors/
+$ cp solarized.vim ~/.vim/colors
+```
 
----
+修改 `.vimrc` 
+
+```bash
+$ vi ~/.vimrc
+syntax on
+set background=dark
+colorscheme solarized
+```
+
+### ls
+
+Max OS X是基于FreeBSD的, 所以ls是BSD那一套, 不是GNU的ls, 所以即使Terminal/iTerm2配置了颜色, 但是ls也不会受到影响, 所以通过安装GNU的coreutils, 来解决
+
+```bash
+$ git clone
+
+eval `dircolors ~/plugins/dircolors-solarized/dircolors.ansi-dark`
+```
+
 
 ### powerline
 
-先用`pip`安装
-
-	$ pip install powerline-status
+powerline修改了terminal/vim下面的statusline
 
 先安装__字体__不然会有乱码
 
-    $ git clone https://github.com/powerline/fonts
-    $ cd ~/plugins/fonts && ./install.sh
+```bash
+$ git clone https://github.com/powerline/fonts
+$ cd ~/plugins/fonts && ./install.sh
+```
 
-然后安装powerline for shell
+用`pip`安装, 然后获取到安装目录, 然后打开 vim ~/.zshrc, 在最后添加(注意前面的点)
 
-    $ git clone https://github.com/powerline/powerline
+```bash
+$ pip install powerline-status
+$ vim ~/.zshrc
 
-然后打开 vim ~/.zshrc, 在最后添加(注意前面的点)
+if test $(which pip)
+then
+    export POWERLINE_ROOT="$(pip show powerline-status | grep "Location" | cut -d " " -f 2)/powerline"
+    . ${POWERLINE_ROOT}/bindings/zsh/powerline.zsh
 
-    . ~/plugins/powerline/powerline/bindings/zsh/powerline.zsh
+fi
+```	
+之后使用`source ~/.zshrc`使之生效, 修改终端(iTerm2)的字体为`14pt Meslo LG S DZ Regular for Powerline`
 
-`~/plugins` 是我放powerline源码的位置
-
-之后使用`source ~/.zshrc`使之生效, 修改终端的字体为`14pt Meslo LG S DZ Regular for Powerline`
 如下图
 ![image](http://7xjgzy.com1.z0.glb.clouddn.com/powerline_1.png)
 
@@ -199,22 +271,23 @@ Homebrew 安装依赖 __Command Line Tools__ for __Xcode__, 可以去Apple官网
 
 `vim ~/.vimrc` 添加下面的配置, 路径和字体改成自己的
 
-    set rtp+=~/plugins/powerline/powerline/bindings/vim
-    set guifont=Meslo\ LG\ S\ DZ\ Regular\ for\ Powerline:h14
-    set laststatus=2
-    set encoding=utf-8
-    set t_Co=256
-    set number
-    set fillchars+=stl:\ ,stlnc:\
-    set term=xterm-256color
-    set termencoding=utf-8
-    set background=light
+```bash
+set rtp+= /usr/local/lib/python2.7/site-packages/powerline/bindings/vim
+set guifont=Meslo\ LG\ S\ DZ\ Regular\ for\ Powerline:h14
+set laststatus=2
+set encoding=utf-8
+set t_Co=256
+set number
+set fillchars+=stl:\ ,stlnc:\
+set term=xterm-256color
+set termencoding=utf-8
+set background=light
+```
     
 效果图如下, 会有一个状态栏出来
 
 ![image](http://7xjgzy.com1.z0.glb.clouddn.com/powerline_2.png)
 
----
 
 ## IDE && Editor
 
@@ -289,66 +362,26 @@ Sublime Text在Mac OS X中一跳一跳启动不了的解决方法见：[link](ht
 
 ---
 
-### Google Chrome
+### Other App
 
-替换成自己喜欢的任意浏览器.
+| name | info |
+| --- | --- |
+| Google Chrome | 浏览器不用说了吧 |
+| Alfred | 神器, 神器, 神器 |
+| Dash | 各种API文档, 有破解版 |
+| GoAgentX | 支持各种协议的翻墙GUI |
+| Xmind | 思维导图工具 |
+| Sequel Pro | 开源免费的Mysql管理软件|
+| Mou | Markdown编辑器 |
+| VirtualBox | 免费的虚拟机 |
+| Genymotion | android虚拟机, 有免费的个人版本 |
+| VMware Fusion | 这个有序列码, 性能也比较好, parallels desktop没有免费的 |
+| The Unarchiver | 免费的mac系统解压缩软件 |
 
-
-[推荐插件](./chrome-plugins.md).
-
----
-
-### The Unarchiver
-
-免费的mac系统解压缩软件
-
----
-
-### Dash
-
-各种API文档, 有破解版
-
----
-
-### GoAgentX
-
-支持各种协议的翻墙GUI
-
----
-
-### Xmind
-
-思维导图工具
-
----
-
-### 虚拟机
-
-#### VirtualBox
-
-免费的虚拟机
-
-#### Genymotion
-
-android虚拟机, 有免费的个人版本
-
-#### VMware Fusion
-
-这个有序列码, 性能也比较好
-
-parallels desktop没有免费的
-
----
-
-### Mou
-
-Markdown编辑器
-
----
-
-### Sequel Pro
-
-开源免费的Mysql管理软件
-
----
-
+## Reference
+ - [nicolashery's mac-dev-setup](https://github.com/nicolashery/mac-dev-setup)
+ - [如何優雅地在 Mac 上使用 dotfiles?](http://segmentfault.com/a/1190000002713879)
+ - [GitHub does dotfiles](https://dotfiles.github.io/)
+ - [Best-App](https://github.com/hzlzh/Best-App)
+ - [Slate配置](http://www.hulufei.com/post/A-Fancy-Window-Manager-For-Mac-Slate)
+ 
