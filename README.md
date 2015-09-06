@@ -56,9 +56,6 @@ $ brew install caskroom/cask/brew-cask
 
 ### 鼠标, 键盘, 快捷键修改
 
-__鼠标__:  关闭 __滚动方向:自然__
-
-改用软件更改[Scroll Reverser for Mac OS X](http://pilotmoon.com/scrollreverser/)
 
 __键盘 > 键盘__: 按键重复 -> 快, 重复前延迟 -> 快
 
@@ -151,12 +148,6 @@ $ curl -L -k https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.
 
 install
 
-```bash
-$ git clone https://github.com/rupa/z.git ./plugins
-```
-
-or
-
 ```
 $ brew install z
 ```
@@ -164,8 +155,9 @@ $ brew install z
 然后在`~/.zshrc`里面添加
 
 ```
-$ echo "source /usr/local/lib/z.sh" >> ~/.zshrc
-$ source ~/plugins/z/z.sh
+$ vim ~/.zshrc
+
+. `brew --prefix`/etc/profile.d/z.sh
 ```
 
 之后的cd命令都会被z.sh统计到, 以后用 `z <regex>` 直接进入频繁访问的目录
@@ -232,8 +224,6 @@ colorscheme solarized
 Max OS X是基于FreeBSD的, 所以ls是BSD那一套, 不是GNU的ls, 所以即使Terminal/iTerm2配置了颜色, 但是ls也不会受到影响, 所以通过安装GNU的coreutils, 来解决
 
 ```bash
-$ git clone
-
 eval `dircolors ~/plugins/dircolors-solarized/dircolors.ansi-dark`
 ```
 
@@ -357,8 +347,6 @@ Sublime Text在Mac OS X中一跳一跳启动不了的解决方法见：[link](ht
 #### 配置
 
 	vim ~/.slate
-
-配置参考 [.slate](./.slate)
 
 ---
 
